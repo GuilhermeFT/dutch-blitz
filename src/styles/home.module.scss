@@ -1,0 +1,178 @@
+.mainHome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background: #fafafa;
+
+  min-height: 100vh;
+
+  > div {
+    position: relative;
+    width: 100%;
+    height: 25vh;
+    min-height: 200px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+
+    overflow-y: auto;
+
+    > input {
+      width: 100%;
+      height: 100%;
+      border: none;
+
+      padding: 6px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+
+      border-top: 1px solid rgb(0, 0, 0);
+      border-bottom: 1px solid rgb(0, 0, 0);
+      background: transparent;
+    }
+  }
+}
+
+.greenContainer {
+  background-color: #00b83d;
+
+  .counter {
+    > button {
+      background-color: #fafafa;
+      color: #00b83d;
+    }
+  }
+
+  .inputContainer {
+    > button {
+      color: #00b83d;
+    }
+  }
+}
+
+.yellowContainer {
+  padding-bottom: 1rem;
+  background-color: #ebb70f;
+
+  .counter {
+    > button {
+      background-color: #fafafa;
+      color: #ebb70f;
+    }
+  }
+
+  .inputContainer {
+    > button {
+      color: #ebb70f;
+    }
+  }
+}
+
+.blueContainer {
+  background-color: #0063d4;
+
+  .counter {
+    > button {
+      background-color: #fafafa;
+      color: #0063d4;
+    }
+  }
+
+  .inputContainer {
+    > button {
+      color: #0063d4;
+    }
+  }
+}
+
+.pinkContainer {
+  background-color: #ca3ab2;
+
+  .counter {
+    > button {
+      background-color: #fafafa;
+      color: #ca3ab2;
+    }
+  }
+
+  .inputContainer {
+    > button {
+      color: #ca3ab2;
+    }
+  }
+}
+
+.counter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 8px;
+
+  > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+.contentScroll {
+  flex: 1;
+  overflow: auto;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  > input {
+    flex: 1;
+    height: 40px;
+    border: none;
+
+    padding: 6px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+
+    border-top: 1px solid #fafafa;
+    border-bottom: 1px solid #fafafa;
+    background: transparent;
+  }
+
+  > button {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    background-color: #fafafa;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+.result {
+  position: absolute;
+  right: 10px;
+
+  font-weight: 700;
+  font-size: 2rem;
+  color: black;
+}
