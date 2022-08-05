@@ -4,105 +4,104 @@
   justify-content: center;
   flex-direction: column;
 
-  background: #fafafa;
+  background: #222;
 
   min-height: 100vh;
+}
+
+.colorContainer {
+  margin: auto;
+  width: 30%;
+  min-width: 284px;
+  position: relative;
+  height: 20vh;
+  min-height: 200px;
+  border-radius: 12px;
+  border: 1px solid #aaa;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+
+  overflow-y: auto;
 
   > div {
-    position: relative;
     width: 100%;
-    height: 25vh;
-    min-height: 200px;
+    height: 100%;
+    padding: 6px 12px;
 
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
+    header {
+      display: flex;
+      align-items: center;
 
-    overflow-y: auto;
+      h1 {
+        position: relative;
+        top: 3px;
+      }
 
-    > input {
-      width: 100%;
-      height: 100%;
-      border: none;
-
-      padding: 6px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #333;
-
-      border-top: 1px solid rgb(0, 0, 0);
-      border-bottom: 1px solid rgb(0, 0, 0);
-      background: transparent;
+      button {
+        margin: 0 auto 0 12px;
+        border: none;
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+      }
     }
+  }
+
+  > input {
+    width: 100%;
+    height: 100%;
+    border: none;
+
+    padding: 6px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+
+    border-top: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
+    background: transparent;
   }
 }
 
 .greenContainer {
-  background-color: #00b83d;
+  background-color: #29ff70;
 
-  .counter {
+ .inputContainer {
     > button {
-      background-color: #fafafa;
-      color: #00b83d;
-    }
-  }
-
-  .inputContainer {
-    > button {
-      color: #00b83d;
+      color: #00e13c;
     }
   }
 }
 
 .yellowContainer {
-  padding-bottom: 1rem;
-  background-color: #ebb70f;
-
-  .counter {
-    > button {
-      background-color: #fafafa;
-      color: #ebb70f;
-    }
-  }
+  background-color: #ffd240;
 
   .inputContainer {
     > button {
-      color: #ebb70f;
+      color: #ffb700;
     }
   }
 }
 
 .blueContainer {
-  background-color: #0063d4;
-
-  .counter {
-    > button {
-      background-color: #fafafa;
-      color: #0063d4;
-    }
-  }
+  background-color: #4d9fff;
 
   .inputContainer {
     > button {
-      color: #0063d4;
+      color: #3a96ff;
     }
   }
 }
 
 .pinkContainer {
-  background-color: #ca3ab2;
-
-  .counter {
-    > button {
-      background-color: #fafafa;
-      color: #ca3ab2;
-    }
-  }
+  background-color: #fcb6f1;
 
   .inputContainer {
     > button {
-      color: #ca3ab2;
+      color: #ff95ef;
     }
   }
 }
@@ -133,6 +132,9 @@
 .contentScroll {
   flex: 1;
   overflow: auto;
+  height: 100%;
+  max-height: 9vh;
+  margin-top: 16px;
 }
 
 .inputContainer {
@@ -143,6 +145,7 @@
 
   > input {
     flex: 1;
+    width: 100%;
     height: 40px;
     border: none;
 
@@ -151,8 +154,8 @@
     font-weight: bold;
     color: rgb(0, 0, 0);
 
-    border-top: 1px solid #fafafa;
-    border-bottom: 1px solid #fafafa;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
     background: transparent;
   }
 
@@ -165,13 +168,16 @@
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
+    border-top: 1px solid #aaa;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 0 0 2px;
   }
 }
 
 .result {
-  position: absolute;
-  right: 10px;
-
   font-weight: 700;
   font-size: 2rem;
   color: black;
