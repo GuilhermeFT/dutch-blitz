@@ -106,6 +106,10 @@ const Home: NextPage = () => {
       <Head>
         <title>Dutch Blitz Counter</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
       </Head>
 
       <main className={styles.mainHome}>
@@ -117,22 +121,26 @@ const Home: NextPage = () => {
           value
         }) => {
           return(
-            <div className={styles[`${value}Container`]} key={name}>
-              <div className={styles.result}>
-                {points.reduce((acc, curr) => acc + curr, 0)}
-              </div>
-              <h1>{name}</h1>
-  
-              <div className={styles.contentScroll}>
-                <div className={styles.counter}>
-                  {points.map((point, index) => (
-                    <button
-                      key={index}
-                      onDoubleClick={() => removePoint(value, index)}
-                    >
-                      {point}
-                    </button>
-                  ))}
+            <div className={`${styles[`${value}Container`]} ${styles.colorContainer}`} key={name}>
+              <div>
+                <header>
+                  <h1>{name}</h1>
+                  <div className={styles.result}>
+                    {points.reduce((acc, curr) => acc + curr, 0)}
+                  </div>
+                </header>
+    
+                <div className={styles.contentScroll}>
+                  <div className={styles.counter}>
+                    {points.map((point, index) => (
+                      <button
+                        key={index}
+                        onDoubleClick={() => removePoint(value, index)}
+                      >
+                        {point}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
   
