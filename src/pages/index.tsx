@@ -2,7 +2,15 @@ import type { NextPage } from 'next'
 
 import styles from '@/styles/home.module.scss'
 import Head from 'next/head'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
+
+interface ColorObject {
+  name: string;
+  value: 'blue' | 'pink' | 'green' | 'yellow';
+  points: number[];
+  pointsValue: string;
+  setPointsValue: Dispatch<SetStateAction<string>>;
+}
 
 const Home: NextPage = () => {
   const [bluePoints, setBluePoints] = useState<number[]>([])
@@ -14,11 +22,6 @@ const Home: NextPage = () => {
   const [pinkValue, setPinkValue] = useState('')
   const [greenValue, setGreenValue] = useState('')
   const [yellowValue, setYellowValue] = useState('')
-
-  const totalBlue = bluePoints.reduce((acc, curr) => acc + curr, 0)
-  const totalPink = pinkPoints.reduce((acc, curr) => acc + curr, 0)
-  const totalGreen = greenPoints.reduce((acc, curr) => acc + curr, 0)
-  const totalYellow = yellowPoints.reduce((acc, curr) => acc + curr, 0)
 
   function removePoint(
     color: 'blue' | 'pink' | 'green' | 'yellow',
@@ -62,8 +65,41 @@ const Home: NextPage = () => {
         setYellowPoints([...yellowPoints, Number(yellowValue)])
         setYellowValue('')
         break
+      default:
+        break
     }
   }
+
+  const colorsContainers: ColorObject[] = [
+    {
+      name: 'Azul',
+      value: 'blue',
+      points: bluePoints,
+      pointsValue: blueValue,
+      setPointsValue: setBlueValue,
+    },
+    {
+      name: 'Rosa',
+      value: 'pink',
+      points: pinkPoints,
+      pointsValue: pinkValue,
+      setPointsValue: setPinkValue,
+    },
+    {
+      name: 'Verde',
+      value: 'green',
+      points: greenPoints,
+      pointsValue: greenValue,
+      setPointsValue: setGreenValue,
+    },
+    {
+      name: 'Amarelo',
+      value: 'yellow',
+      points: yellowPoints,
+      pointsValue: yellowValue,
+      setPointsValue: setYellowValue,
+    },
+  ]
 
   return (
     <>
@@ -73,142 +109,52 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.mainHome}>
-        <div className={styles.blueContainer}>
-          <div className={styles.result}>{totalBlue}</div>
-          <h1 contentEditable>Azul</h1>
-
-          <div className={styles.contentScroll}>
-            <div className={styles.counter}>
-              {bluePoints.map((point, index) => (
-                <button
-                  key={index}
-                  onDoubleClick={() => removePoint('blue', index)}
-                >
-                  {point}
-                </button>
-              ))}
+        {colorsContainers.map(({ 
+          name, 
+          points, 
+          pointsValue, 
+          setPointsValue, 
+          value
+        }) => {
+          return(
+            <div className={styles[`${value}Container`]} key={name}>
+              <div className={styles.result}>
+                {points.reduce((acc, curr) => acc + curr, 0)}
+              </div>
+              <h1>{name}</h1>
+  
+              <div className={styles.contentScroll}>
+                <div className={styles.counter}>
+                  {points.map((point, index) => (
+                    <button
+                      key={index}
+                      onDoubleClick={() => removePoint(value, index)}
+                    >
+                      {point}
+                    </button>
+                  ))}
+                </div>
+              </div>
+  
+              <form
+                className={styles.inputContainer}
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <input
+                  type="number"
+                  value={pointsValue}
+                  onBlur={() => addPoint(value)}
+                  onChange={({ target: { value }}) =>
+                    Number(value) <= 40 &&
+                    Number(value) >= -13 &&
+                    setPointsValue(value)
+                  }
+                />
+                <button onClick={() => addPoint(value)}>+</button>
+              </form>
             </div>
-          </div>
-
-          <form
-            className={styles.inputContainer}
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <input
-              type="number"
-              value={blueValue}
-              onBlur={() => addPoint('blue')}
-              onChange={(e) =>
-                Number(e.target.value) <= 40 &&
-                Number(e.target.value) >= -40 &&
-                setBlueValue(e.target.value)
-              }
-            />
-            <button onClick={() => addPoint('blue')}>+</button>
-          </form>
-        </div>
-        <div className={styles.pinkContainer}>
-          <div className={styles.result}>{totalPink}</div>
-          <h1 contentEditable>Amarelo</h1>
-
-          <div className={styles.contentScroll}>
-            <div className={styles.counter}>
-              {pinkPoints.map((point, index) => (
-                <button
-                  key={index}
-                  onDoubleClick={() => removePoint('pink', index)}
-                >
-                  {point}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <form
-            className={styles.inputContainer}
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <input
-              type="number"
-              value={pinkValue}
-              onBlur={() => addPoint('pink')}
-              onChange={(e) =>
-                Number(e.target.value) <= 40 &&
-                Number(e.target.value) >= -40 &&
-                setPinkValue(e.target.value)
-              }
-            />
-            <button onClick={() => addPoint('pink')}>+</button>
-          </form>
-        </div>
-        <div className={styles.greenContainer}>
-          <div className={styles.result}>{totalGreen}</div>
-          <h1 contentEditable>Amarelo</h1>
-
-          <div className={styles.contentScroll}>
-            <div className={styles.counter}>
-              {greenPoints.map((point, index) => (
-                <button
-                  key={index}
-                  onDoubleClick={() => removePoint('green', index)}
-                >
-                  {point}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <form
-            className={styles.inputContainer}
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <input
-              type="number"
-              value={greenValue}
-              onBlur={() => addPoint('green')}
-              onChange={(e) =>
-                Number(e.target.value) <= 40 &&
-                Number(e.target.value) >= -40 &&
-                setGreenValue(e.target.value)
-              }
-            />
-            <button onClick={() => addPoint('green')}>+</button>
-          </form>
-        </div>
-        <div className={styles.yellowContainer}>
-          <div className={styles.result}>{totalYellow}</div>
-          <h1 contentEditable>Amarelo</h1>
-
-          <div className={styles.contentScroll}>
-            <div className={styles.counter}>
-              {yellowPoints.map((point, index) => (
-                <button
-                  key={index}
-                  onDoubleClick={() => removePoint('yellow', index)}
-                >
-                  {point}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <form
-            className={styles.inputContainer}
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <input
-              type="number"
-              value={yellowValue}
-              onBlur={() => addPoint('yellow')}
-              onChange={(e) =>
-                Number(e.target.value) <= 40 &&
-                Number(e.target.value) >= -40 &&
-                setYellowValue(e.target.value)
-              }
-            />
-            <button onClick={() => addPoint('yellow')}>+</button>
-          </form>
-        </div>
+          )
+        })}
       </main>
     </>
   )
