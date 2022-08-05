@@ -34,7 +34,19 @@
     header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+
+      h1 {
+        position: relative;
+        top: 3px;
+      }
+
+      button {
+        margin: 0 auto 0 12px;
+        border: none;
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+      }
     }
   }
 
@@ -57,13 +69,7 @@
 .greenContainer {
   background-color: #29ff70;
 
-  .counter {
-    > button {
-      color: #00e13c;
-    }
-  }
-
-  .inputContainer {
+ .inputContainer {
     > button {
       color: #00e13c;
     }
@@ -72,12 +78,6 @@
 
 .yellowContainer {
   background-color: #ffd240;
-
-  .counter {
-    > button {
-      color: #ffb700;
-    }
-  }
 
   .inputContainer {
     > button {
@@ -89,12 +89,6 @@
 .blueContainer {
   background-color: #4d9fff;
 
-  .counter {
-    > button {
-      color: #3a96ff;
-    }
-  }
-
   .inputContainer {
     > button {
       color: #3a96ff;
@@ -104,12 +98,6 @@
 
 .pinkContainer {
   background-color: #fcb6f1;
-
-  .counter {
-    > button {
-      color: #ff95ef;
-    }
-  }
 
   .inputContainer {
     > button {
