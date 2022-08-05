@@ -130,17 +130,15 @@ const Home: NextPage = () => {
                   </div>
                 </header>
     
-                <div className={styles.contentScroll}>
-                  <div className={styles.counter}>
-                    {points.map((point, index) => (
-                      <button
-                        key={index}
-                        onDoubleClick={() => removePoint(value, index)}
-                      >
-                        {point}
-                      </button>
-                    ))}
-                  </div>
+                <div className={`${styles.contentScroll} ${styles.counter}`}>
+                  {points.map((point, index) => (
+                    <button
+                      key={index}
+                      onDoubleClick={() => removePoint(value, index)}
+                    >
+                      {point}
+                    </button>
+                  ))}
                 </div>
               </div>
   
